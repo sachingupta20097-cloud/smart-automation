@@ -1,0 +1,260 @@
+{
+  "fields": [
+    {
+      "id": "11111111-2222-3333-4444-555555555501",
+      "user_id": "11111111-1111-1111-1111-111111111111",
+      "field_name": "North Valley Alpha (Wheat)",
+      "location_coordinates": "28.7041° N, 77.1025° E",
+      "area_hectares": 14.5,
+      "current_crop": "Wheat",
+      "health_score": 82,
+      "created_at": "2026-09-30T13:00:06.603Z"
+    },
+    {
+      "id": "11111111-2222-3333-4444-555555555502",
+      "user_id": "11111111-1111-1111-1111-111111111111",
+      "field_name": "Riverbed West Plot (Tomato)",
+      "location_coordinates": "28.6289° N, 77.2065° E",
+      "area_hectares": 8.2,
+      "current_crop": "Tomato",
+      "health_score": 64,
+      "created_at": "2026-10-02T13:00:06.603Z"
+    },
+    {
+      "id": "11111111-2222-3333-4444-555555555503",
+      "user_id": "11111111-1111-1111-1111-111111111111",
+      "field_name": "Sunrise Terrace (Cotton)",
+      "location_coordinates": "28.5355° N, 77.3910° E",
+      "area_hectares": 22,
+      "current_crop": "Cotton",
+      "health_score": 91,
+      "created_at": "2026-10-04T13:00:06.603Z"
+    }
+  ],
+  "advisory_reports": [
+    {
+      "id": "7a9c9d42-6c40-4aab-b20a-bf163ef4e631",
+      "field_id": "11111111-2222-3333-4444-555555555501",
+      "submitted_by": "11111111-1111-1111-1111-111111111111",
+      "crop_type": "Wheat",
+      "growth_stage": "Vegetative",
+      "telemetry_data": {
+        "soilMoisturePercentage": 26,
+        "soilPh": 6.4,
+        "nitrogenPpm": 19,
+        "phosphorusPpm": 30,
+        "potassiumPpm": 110,
+        "temperatureCelsius": 35,
+        "humidityPercentage": 38,
+        "visualSymptoms": "Leaf tip scorching and moderate wilt"
+      },
+      "image_url": null,
+      "diagnosis_title": "Combined Abiotic Heat-Moisture Stress and Nitrogen-Potassium Deficiency",
+      "severity_score": 7,
+      "confidence_score": 92.5,
+      "ai_reasoning": "The wheat crop is experiencing severe heat and moisture stress due to high ambient temperatures (35°C) and low relative humidity (38%), which accelerates transpiration while soil moisture is critically low at 26%. This has resulted in moderate wilting. The leaf tip scorching is actively compounded by a potassium deficiency (110 ppm), which impairs the crop's stomatal regulation mechanism. Additionally, nitrogen levels (19 ppm) are suboptimal for the vegetative growth phase, threatening overall biomass development. Immediate irrigation and targeted nutrient application are required.",
+      "recommended_actions": [
+        {
+          "actionTitle": "Emergency Precision Irrigation Boost",
+          "targetType": "IRRIGATION",
+          "executionPayload": "flow_rate_lph=2.5, duration_minutes=180, total_volume_liters_per_sqm=18.5, schedule=immediate_night_cycle",
+          "priority": "CRITICAL"
+        },
+        {
+          "actionTitle": "Foliar Nitrogen and Potassium Spray",
+          "targetType": "FERTILIZER",
+          "executionPayload": "potassium_nitrate_ppm=2500, urea_ppm=1500, surfactant_added=true, application_rate_l_ha=300",
+          "priority": "HIGH"
+        }
+      ],
+      "requires_approval": true,
+      "created_at": "2026-10-07T13:00:17.349Z"
+    },
+    {
+      "id": "aaaa1111-bbbb-2222-cccc-333333333301",
+      "field_id": "11111111-2222-3333-4444-555555555502",
+      "submitted_by": "11111111-1111-1111-1111-111111111111",
+      "crop_type": "Tomato",
+      "growth_stage": "Flowering",
+      "telemetry_data": {
+        "soilMoisturePercentage": 31,
+        "soilPh": 6.8,
+        "nitrogenPpm": 22,
+        "phosphorusPpm": 38,
+        "potassiumPpm": 120,
+        "temperatureCelsius": 33,
+        "humidityPercentage": 45
+      },
+      "diagnosis_title": "Early Blight Warning & Moisture Depletion",
+      "severity_score": 7,
+      "confidence_score": 94.2,
+      "ai_reasoning": "Field visual scan reveals concentric brown lesion rings on lower tomato foliage typical of Alternaria solani. Concurrently, soil moisture has dropped to 31% with high ambient temperature (33°C), creating severe flower abortion risks.",
+      "recommended_actions": [
+        {
+          "actionTitle": "Targeted Fungicide Spray (Chlorothalonil)",
+          "targetType": "PESTICIDE",
+          "executionPayload": "chemical:Chlorothalonil_720,rate:1.8L_per_ha,droplet_size:medium",
+          "priority": "CRITICAL"
+        },
+        {
+          "actionTitle": "Drip Hydration Cycle",
+          "targetType": "IRRIGATION",
+          "executionPayload": "flow_rate:20L/m,duration:90min",
+          "priority": "HIGH"
+        }
+      ],
+      "requires_approval": true,
+      "created_at": "2026-10-07T01:00:06.603Z"
+    }
+  ],
+  "workflow_tasks": [
+    {
+      "id": "25fbc782-93ad-4315-bd0a-fceb69960391",
+      "advisory_id": "7a9c9d42-6c40-4aab-b20a-bf163ef4e631",
+      "assigned_field_id": "11111111-2222-3333-4444-555555555501",
+      "title": "Foliar Nitrogen and Potassium Spray",
+      "description": "Autonomous task generated by Gemini AI for target: FERTILIZER. Priority: HIGH.",
+      "priority": "HIGH",
+      "status": "PENDING_APPROVAL",
+      "approved_by": null,
+      "automated_execution_payload": {
+        "targetType": "FERTILIZER",
+        "rawInstructions": "potassium_nitrate_ppm=2500, urea_ppm=1500, surfactant_added=true, application_rate_l_ha=300",
+        "generatedAt": "2026-10-07T13:00:18.151Z",
+        "autoDispatched": false
+      },
+      "created_at": "2026-10-07T13:00:18.152Z",
+      "updated_at": "2026-10-07T13:00:18.152Z"
+    },
+    {
+      "id": "3046ef0c-246a-4e43-a7c1-a36ffe3a81f3",
+      "advisory_id": "7a9c9d42-6c40-4aab-b20a-bf163ef4e631",
+      "assigned_field_id": "11111111-2222-3333-4444-555555555501",
+      "title": "Emergency Precision Irrigation Boost",
+      "description": "Autonomous task generated by Gemini AI for target: IRRIGATION. Priority: CRITICAL.",
+      "priority": "CRITICAL",
+      "status": "IN_PROGRESS",
+      "approved_by": "22222222-2222-2222-2222-222222222222",
+      "automated_execution_payload": {
+        "targetType": "IRRIGATION",
+        "rawInstructions": "flow_rate_lph=2.5, duration_minutes=180, total_volume_liters_per_sqm=18.5, schedule=immediate_night_cycle",
+        "generatedAt": "2026-10-07T13:00:18.064Z",
+        "autoDispatched": false,
+        "flowRate": "2.8L/m",
+        "scheduledAt": "22:00",
+        "overridden_by_agronomist": true
+      },
+      "created_at": "2026-10-07T13:00:18.064Z",
+      "updated_at": "2026-10-07T13:00:32.731Z",
+      "agronomist_notes": "Verified leaf photos. Drip pulse approved for night hours."
+    },
+    {
+      "id": "task-1111-2222-3333-4444-555555555501",
+      "advisory_id": "aaaa1111-bbbb-2222-cccc-333333333301",
+      "assigned_field_id": "11111111-2222-3333-4444-555555555502",
+      "title": "Targeted Fungicide Spray (Chlorothalonil)",
+      "description": "High risk chemical treatment requiring agronomist verification before robotic sprayer dispatch.",
+      "priority": "CRITICAL",
+      "status": "PENDING_APPROVAL",
+      "automated_execution_payload": {
+        "chemical": "Chlorothalonil_720",
+        "rate": "1.8L_per_ha",
+        "droplet_size": "medium"
+      },
+      "created_at": "2026-10-07T01:00:06.603Z",
+      "updated_at": "2026-10-07T01:00:06.603Z"
+    },
+    {
+      "id": "task-1111-2222-3333-4444-555555555502",
+      "advisory_id": "aaaa1111-bbbb-2222-cccc-333333333301",
+      "assigned_field_id": "11111111-2222-3333-4444-555555555501",
+      "title": "Drip Hydration Cycle - Zone Alpha",
+      "description": "Automated irrigation valve activation based on real-time soil telemetry.",
+      "priority": "HIGH",
+      "status": "IN_PROGRESS",
+      "automated_execution_payload": {
+        "valve_id": "VALVE_04_NORTH",
+        "flow_rate": "20L/min",
+        "duration_minutes": 90
+      },
+      "created_at": "2026-10-07T09:00:06.603Z",
+      "updated_at": "2026-10-07T11:00:06.603Z"
+    },
+    {
+      "id": "task-1111-2222-3333-4444-555555555503",
+      "advisory_id": "aaaa1111-bbbb-2222-cccc-333333333301",
+      "assigned_field_id": "11111111-2222-3333-4444-555555555503",
+      "title": "Micro-Nutrient Boron Foliar Spray",
+      "description": "Routine maintenance for cotton flowering stage.",
+      "priority": "LOW",
+      "status": "COMPLETED",
+      "automated_execution_payload": {
+        "compound": "Solubor_20",
+        "rate": "1.2kg_per_ha"
+      },
+      "created_at": "2026-10-06T13:00:06.603Z",
+      "updated_at": "2026-10-07T05:00:06.603Z"
+    }
+  ],
+  "impact_metrics": [
+    {
+      "id": "8fd55643-e007-4314-95ac-d171ea0ab22b",
+      "field_id": "11111111-2222-3333-4444-555555555501",
+      "water_saved_liters": 14500,
+      "chemical_cost_saved_usd": 65.5,
+      "yield_loss_prevented_percentage": 28,
+      "response_time_minutes": 11,
+      "recorded_at": "2026-10-07T13:00:18.241Z"
+    },
+    {
+      "id": "metric-01",
+      "field_id": "11111111-2222-3333-4444-555555555501",
+      "water_saved_liters": 14200,
+      "chemical_cost_saved_usd": 340.5,
+      "yield_loss_prevented_percentage": 18.5,
+      "response_time_minutes": 24,
+      "recorded_at": "2026-10-01T13:00:06.603Z"
+    },
+    {
+      "id": "metric-02",
+      "field_id": "11111111-2222-3333-4444-555555555502",
+      "water_saved_liters": 9800,
+      "chemical_cost_saved_usd": 510,
+      "yield_loss_prevented_percentage": 26,
+      "response_time_minutes": 18,
+      "recorded_at": "2026-10-04T13:00:06.603Z"
+    },
+    {
+      "id": "metric-03",
+      "field_id": "11111111-2222-3333-4444-555555555503",
+      "water_saved_liters": 22100,
+      "chemical_cost_saved_usd": 420,
+      "yield_loss_prevented_percentage": 14,
+      "response_time_minutes": 15,
+      "recorded_at": "2026-10-06T13:00:06.603Z"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "11111111-1111-1111-1111-111111111111",
+      "email": "farmer.rajesh@agri.ai",
+      "full_name": "Rajesh Patel",
+      "role": "farmer",
+      "created_at": "2026-09-07T13:00:06.603Z"
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222222",
+      "email": "dr.elena@agriscience.org",
+      "full_name": "Dr. Elena Rostova",
+      "role": "agronomist",
+      "created_at": "2026-09-07T13:00:06.603Z"
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333333",
+      "email": "admin.agri@enterprise.io",
+      "full_name": "System Administrator",
+      "role": "admin",
+      "created_at": "2026-09-07T13:00:06.603Z"
+    }
+  ]
+}

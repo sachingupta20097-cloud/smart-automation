@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+*/node_modules/
+.pnp
+.pnp.js
+
+# Production build artifacts
+dist/
+client/dist/
+build/
+
+# Local Environment Variables
+.env
+.env.local
+server/.env
+client/.env
+client/.env.local
+*.env
+*.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Internal task logs
+.system_generated/
