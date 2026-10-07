@@ -143,17 +143,21 @@ Generate the complete JSON response with diagnosisTitle, severityScore, confiden
   parts.push({ text: promptText });
 
   const modelCandidates = [
-    process.env.GEMINI_MODEL,
-    'gemini-3.5-flash',
-    'gemini-3.8-flash',
-    'gemini-flash-latest'
-  ].filter(Boolean);
+    ...new Set([
+      process.env.GEMINI_MODEL,
+      'gemini-2.5-flash',
+      'gemini-2.0-flash',
+      'gemini-1.5-flash',
+      'gemini-3.5-flash',
+      'gemini-3.8-flash'
+    ].filter(Boolean))
+  ];
 
   let lastError = null;
   for (const modelName of modelCandidates) {
     try {
       console.log(`🤖 Invoking Gemini model: ${modelName}`);
-      const response = await ai.models.generateContent({
+      const generatePromise = ai.models.generateContent({
         model: modelName,
         contents: parts,
         config: {
@@ -162,6 +166,10 @@ Generate the complete JSON response with diagnosisTitle, severityScore, confiden
           responseSchema: advisoryResponseSchema
         }
       });
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`Timeout invoking ${modelName} after 10s`)), 10000)
+      );
+      const response = await Promise.race([generatePromise, timeoutPromise]);
 
       if (response && response.text) {
         const parsed = JSON.parse(response.text);

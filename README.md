@@ -9,7 +9,7 @@
 ---
 
 ## 🌐 Live Public Access URL
-- **Public HTTPS Link**: **[https://65ac146b938d87.lhr.life](https://65ac146b938d87.lhr.life)**
+- **Public HTTPS Link**: **[https://4f38326adacfb0.lhr.life](https://4f38326adacfb0.lhr.life)**
 - **Local Dev Server**: `http://localhost:5000` (Backend + UI) and `http://localhost:3000` (Vite)
 
 ---
