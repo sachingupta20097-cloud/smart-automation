@@ -1,4 +1,12 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
+// Normalize API_BASE: handles relative '/api' or absolute 'https://...onrender.com' with/without '/api' and trailing slashes
+const rawBase = (import.meta.env.VITE_API_BASE_URL || '/api').trim();
+const cleanBase = rawBase.replace(/\/+$/, '');
+export const API_BASE = !cleanBase || cleanBase === '/api'
+  ? '/api'
+  : cleanBase.endsWith('/api')
+    ? cleanBase
+    : `${cleanBase}/api`;
+
 
 async function handleResponse(res) {
   if (!res.ok) {
@@ -7,7 +15,7 @@ async function handleResponse(res) {
       const data = await res.json();
       if (data.message) errorMsg = data.message;
       else if (data.error) errorMsg = data.error;
-    } catch (e) {}
+    } catch (e) { }
     throw new Error(errorMsg);
   }
   return res.json();

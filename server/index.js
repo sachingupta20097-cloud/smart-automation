@@ -38,11 +38,12 @@ const PORT = process.env.PORT || 5000;
 
 // Enable CORS and high JSON limit for leaf photo base64 uploads
 app.use(cors({ origin: true, credentials: true }));
+app.options('*', cors({ origin: true, credentials: true }));
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 
-// Health Check
-app.get('/api/health', (req, res) => {
+// Health Check (supports both /health and /api/health for Render health checks)
+app.get(['/health', '/api/health'], (req, res) => {
   res.json({
     status: 'ONLINE',
     service: 'AI-Powered Agriculture Crop Advisory Assistant & Smart Workflow Automation',
@@ -76,8 +77,17 @@ const clientDistPath = path.join(__dirname, '../client/dist');
 if (fs.existsSync(clientDistPath)) {
   app.use(express.static(clientDistPath));
   app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api')) return next();
+    if (req.path.startsWith('/api') || req.path === '/health') return next();
     res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.json({
+      status: 'ONLINE',
+      service: 'AgriAdvisor AI Backend API',
+      health: '/api/health',
+      timestamp: new Date().toISOString()
+    });
   });
 }
 
