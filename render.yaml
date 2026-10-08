@@ -1,10 +1,11 @@
 services:
   # -------------------------------------------------------------
-  # BACKEND SERVICE (Render Web Service)
+  # BACKEND SERVICE (Render Web Service - Free Tier)
   # -------------------------------------------------------------
   - type: web
     name: agriadvisor-api
     runtime: node
+    plan: free
     rootDir: server
     buildCommand: npm install
     startCommand: node index.js
@@ -24,7 +25,7 @@ services:
         sync: false
 
   # -------------------------------------------------------------
-  # FRONTEND SERVICE (Render Static Site)
+  # FRONTEND SERVICE (Render Static Site - Always Free)
   # -------------------------------------------------------------
   - type: web
     name: agriadvisor-frontend
